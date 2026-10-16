@@ -76,8 +76,11 @@ public class StudentService {
 
     public Double getAverageAge() {
         logger.info("Was invoked method for get average age of students");
-        Double averageAge = studentRepository.getAverageAge();
-        return averageAge != null ? averageAge : 0.0;
+        return studentRepository.findAll()
+                .parallelStream()
+                .mapToInt(Student::getAge)
+                .average()
+                .orElse(0);
     }
 
     public List<Student> getLastFiveStudents() {
@@ -89,8 +92,8 @@ public class StudentService {
         return studentRepository.findAll()
                 .parallelStream()
                 .map(Student::getName)
-                .filter(name -> name.toUpperCase().startsWith("А"))
                 .map(String::toUpperCase)
+                .filter(name -> name.startsWith("A"))
                 .sorted()
                 .toList();
     }
