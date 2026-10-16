@@ -20,6 +20,7 @@ public class StudentController {
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
+
     private static final Logger logger =
             LoggerFactory.getLogger(StudentController.class);
 
@@ -63,6 +64,11 @@ public class StudentController {
     @GetMapping("/last-five")
     public List<Student> getLastFiveStudents() {
         return studentService.getLastFiveStudents();
+    }
+
+    @GetMapping("/students/names-A")
+    public List<String> getStudentsNamesStartingWithA() {
+        return studentService.getStudentsNamesWithA();
     }
 
     @PutMapping("/{id}")

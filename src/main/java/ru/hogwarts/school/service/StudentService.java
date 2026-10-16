@@ -84,4 +84,14 @@ public class StudentService {
         logger.info("Was invoked method for get last five students");
         return studentRepository.getLastFiveStudents();
     }
+
+    public List<String> getStudentsNamesWithA() {
+        return studentRepository.findAll()
+                .parallelStream()
+                .map(Student::getName)
+                .filter(name -> name.toUpperCase().startsWith("А"))
+                .map(String::toUpperCase)
+                .sorted()
+                .toList();
+    }
 }
