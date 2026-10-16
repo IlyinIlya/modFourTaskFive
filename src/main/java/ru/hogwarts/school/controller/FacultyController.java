@@ -19,6 +19,7 @@ public class FacultyController {
     public FacultyController(FacultyService facultyService) {
         this.facultyService = facultyService;
     }
+
     private static final Logger logger =
             LoggerFactory.getLogger(FacultyController.class);
 
