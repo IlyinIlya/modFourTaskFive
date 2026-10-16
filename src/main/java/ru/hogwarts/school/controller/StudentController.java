@@ -66,7 +66,7 @@ public class StudentController {
         return studentService.getLastFiveStudents();
     }
 
-    @GetMapping("/students/names-A")
+    @GetMapping("/names-A")
     public List<String> getStudentsNamesWithA() {
         return studentService.getStudentsNamesWithA();
     }
