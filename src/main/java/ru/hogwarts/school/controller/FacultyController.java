@@ -59,6 +59,11 @@ public class FacultyController {
         return facultyService.update(id, faculty);
     }
 
+    @GetMapping("/longest-name")
+    public String getLongestFacultyName() {
+        return facultyService.getLongestNameForFaculty();
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         facultyService.delete(id);
