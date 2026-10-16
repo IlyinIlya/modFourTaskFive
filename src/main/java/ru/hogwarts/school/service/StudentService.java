@@ -9,6 +9,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.List;
+import java.util.stream.LongStream;
 
 @Service
 public class StudentService {
@@ -97,4 +98,11 @@ public class StudentService {
                 .sorted()
                 .toList();
     }
+
+    public long getBackIntegerValue() {
+        return LongStream.rangeClosed(1, 1_000_000)
+                .parallel()
+                .sum();
+    }
+
 }

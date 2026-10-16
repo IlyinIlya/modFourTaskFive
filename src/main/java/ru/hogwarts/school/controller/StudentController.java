@@ -71,6 +71,11 @@ public class StudentController {
         return studentService.getStudentsNamesWithA();
     }
 
+    @GetMapping("/totalSumCalculator")
+    public long getBackIntegerValue() {
+        return studentService.getBackIntegerValue();
+    }
+
     @PutMapping("/{id}")
     public Student update(@PathVariable Long id, @RequestBody Student student) {
         return studentService.update(id, student);
