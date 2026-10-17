@@ -75,6 +75,11 @@ public class StudentController {
         return studentService.getBackIntegerValue();
     }
 
+    @GetMapping("/print-parallel")
+
+    @GetMapping("/print-synchronized")
+
+
     @PutMapping("/{id}")
     public Student update(@PathVariable Long id, @RequestBody Student student) {
         return studentService.update(id, student);
