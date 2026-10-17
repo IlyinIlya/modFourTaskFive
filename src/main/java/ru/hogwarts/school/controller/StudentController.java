@@ -20,6 +20,7 @@ public class StudentController {
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
+
     private static final Logger logger =
             LoggerFactory.getLogger(StudentController.class);
 
@@ -40,8 +41,7 @@ public class StudentController {
 
     @GetMapping("/age")
     public List<Student> getStudents(
-            @RequestParam Integer min,
-            @RequestParam Integer max) {
+            @RequestParam Integer min, @RequestParam Integer max) {
         return studentService.getByAge(min, max);
     }
 
@@ -63,6 +63,16 @@ public class StudentController {
     @GetMapping("/last-five")
     public List<Student> getLastFiveStudents() {
         return studentService.getLastFiveStudents();
+    }
+
+    @GetMapping("/names-A")
+    public List<String> getStudentsNamesWithA() {
+        return studentService.getStudentsNamesWithA();
+    }
+
+    @GetMapping("/totalSumCalculator")
+    public long getBackIntegerValue() {
+        return studentService.getBackIntegerValue();
     }
 
     @PutMapping("/{id}")

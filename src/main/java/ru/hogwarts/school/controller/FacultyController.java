@@ -19,6 +19,7 @@ public class FacultyController {
     public FacultyController(FacultyService facultyService) {
         this.facultyService = facultyService;
     }
+
     private static final Logger logger =
             LoggerFactory.getLogger(FacultyController.class);
 
@@ -57,6 +58,11 @@ public class FacultyController {
     @PutMapping("/{id}")
     public Faculty update(@PathVariable Long id, @RequestBody Faculty faculty) {
         return facultyService.update(id, faculty);
+    }
+
+    @GetMapping("/longest-name")
+    public String getLongestFacultyName() {
+        return facultyService.getLongestNameForFaculty();
     }
 
     @DeleteMapping("/{id}")

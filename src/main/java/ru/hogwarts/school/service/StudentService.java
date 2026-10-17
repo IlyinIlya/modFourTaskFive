@@ -9,6 +9,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.List;
+import java.util.stream.LongStream;
 
 @Service
 public class StudentService {
@@ -76,12 +77,32 @@ public class StudentService {
 
     public Double getAverageAge() {
         logger.info("Was invoked method for get average age of students");
-        Double averageAge = studentRepository.getAverageAge();
-        return averageAge != null ? averageAge : 0.0;
+        return studentRepository.findAll()
+                .parallelStream()
+                .mapToInt(Student::getAge)
+                .average()
+                .orElse(0);
     }
 
     public List<Student> getLastFiveStudents() {
         logger.info("Was invoked method for get last five students");
         return studentRepository.getLastFiveStudents();
     }
+
+    public List<String> getStudentsNamesWithA() {
+        return studentRepository.findAll()
+                .parallelStream()
+                .map(Student::getName)
+                .map(String::toUpperCase)
+                .filter(name -> name.startsWith("A"))
+                .sorted()
+                .toList();
+    }
+
+    public long getBackIntegerValue() {
+        return LongStream.rangeClosed(1, 1_000_000)
+                .parallel()
+                .sum();
+    }
+
 }
