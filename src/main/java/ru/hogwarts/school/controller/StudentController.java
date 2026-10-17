@@ -88,6 +88,19 @@ public class StudentController {
         }
         System.out.println("main-thread: " + students.get(0).getName());
         System.out.println("main-thread: " + students.get(1).getName());
+
+        Thread thread1 = new Thread(() -> {
+            System.out.println("thread1: " + students.get(2).getName());
+            System.out.println("thread1: " + students.get(3).getName());
+        });
+
+        Thread thread2 = new Thread(() -> {
+            System.out.println("thread2: " + students.get(4).getName());
+            System.out.println("thread2: " + students.get(5).getName());
+        });
+
+        thread1.start();
+        thread2.start();
     }
 
     @GetMapping("/print-synchronized")
@@ -99,9 +112,20 @@ public class StudentController {
         }
         printName(students.get(0).getName());
         printName(students.get(1).getName());
+
+        Thread thread1 = new Thread(() -> {
+            printName(students.get(2).getName());
+            printName(students.get(3).getName());
+        });
+
+        Thread thread2 = new Thread(() -> {
+            printName(students.get(4).getName());
+            printName(students.get(5).getName());
+        });
+
+        thread1.start();
+        thread2.start();
     }
-
-
 
     @PutMapping("/{id}")
     public Student update(@PathVariable Long id, @RequestBody Student student) {
